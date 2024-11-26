@@ -1,0 +1,26 @@
+{
+  "template": "https://github.com/MicaelJarniac/crustypy",
+  "commit": "81797f153c8d485ec930eaeff90cae60509c1ec6",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "full_name": "Micael Jarniac",
+      "email": "micael@jarniac.dev",
+      "github_username": "MicaelJarniac",
+      "year": "2024",
+      "project_name": "Tool Inventory",
+      "project_slug": "tool_inventory",
+      "project_distribution_name": "tool-inventory",
+      "project_short_description": "Tool inventory.",
+      "version": "0.0.0",
+      "shields_url": "https://img.shields.io",
+      "discord_invite": "",
+      "report_method": "micael@jarniac.dev",
+      "__github_path": "MicaelJarniac/tool-inventory",
+      "__github_url": "https://github.com/MicaelJarniac/tool-inventory",
+      "__readthedocs_name": "tool-inventory",
+      "_template": "https://github.com/MicaelJarniac/crustypy"
+    }
+  },
+  "directory": null
+}
