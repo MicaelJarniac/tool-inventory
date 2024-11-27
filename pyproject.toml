@@ -40,10 +40,10 @@ asv = "^0.5.1"
 virtualenv = "^20.24.3"
 
 [tool.poetry.group.docs.dependencies]
-furo = "^2023.5.20"
-myst-parser = "^2.0.0"
-Sphinx = "^7.0.1"
-sphinxcontrib-spelling = "^8.0.0"
+mkdocs = "^1.6.1"
+mkdocstrings = {extras = ["python"], version = "^0.27.0"}
+mkdocs-material = "^9.5.46"
+pymdown-extensions = "^10.12"
 
 [tool.poetry.group.typing.dependencies]
 # Typing stubs go here

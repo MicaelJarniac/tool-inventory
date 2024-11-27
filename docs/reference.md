@@ -1,80 +1,76 @@
 # Reference
 
-- Tools
-  - Formatting
-    - [Ruff][ruff] <sup>[config][pyproject_toml]</sup>
-  - Linting
-    - [Ruff][ruff] <sup>[config][pyproject_toml]</sup>
-  - Automating
-    - [pre-commit][pre-commit] <sup>[config][_pre-commit-config_yaml]</sup>
-      <details>
-        <summary>Hooks</summary>
-
-        - [`ruff`][ruff]
-        - [`poetry`][poetry]
-          - `poetry-check`
-          - `poetry-lock`
-        - [`pre-commit-hooks`][pre-commit-hooks]
-          - `check-toml`
-          - `check-yaml`
-          - `end-of-file-fixer`
-          - `trailing-whitespace`
-          - `requirements-txt-fixer`
-      </details>
-    - [Semantic Pull Requests][semantic-pull-requests]
-    - [semantic-release][semantic-release] (used indirectly)
-      - [python-semantic-release][python-semantic-release] <sup>[config][pyproject_toml]</sup>
-    - [Codecov][codecov]
-      - [Action][codecov-action]
-      - [tool-inventory][codecov-project]
-    - [Nox][nox] <sup>[config][noxfile_py]</sup>
-    - [Cookiecutter][cookiecutter]
-    - [cruft][cruft] <sup>[config][pyproject_toml]</sup>
-  - Type checking
-    - [Mypy][mypy] <sup>[config][pyproject_toml]</sup>
-      - [Mypy Extensions][mypy-extensions]
-  - Testing
-    - [pytest][pytest] <sup>[config][pyproject_toml]</sup>
-      - Plugins
+## Tools
+### Formatting
+- [Ruff][ruff] <sup>[config][pyproject_toml]</sup>
+### Linting
+- [Ruff][ruff] <sup>[config][pyproject_toml]</sup>
+### Automating
+- [pre-commit][pre-commit] <sup>[config][_pre-commit-config_yaml]</sup>
+    - [`ruff`][ruff]
+    - [`poetry`][poetry]
+        - `poetry-check`
+        - `poetry-lock`
+    - [`pre-commit-hooks`][pre-commit-hooks]
+        - `check-toml`
+        - `check-yaml`
+        - `end-of-file-fixer`
+        - `trailing-whitespace`
+        - `requirements-txt-fixer`
+- [Semantic Pull Requests][semantic-pull-requests]
+- [semantic-release][semantic-release] (used indirectly)
+    - [python-semantic-release][python-semantic-release] <sup>[config][pyproject_toml]</sup>
+- [Codecov][codecov]
+    - [Action][codecov-action]
+    - [tool-inventory][codecov-project]
+- [Nox][nox] <sup>[config][noxfile_py]</sup>
+- [Cookiecutter][cookiecutter]
+- [cruft][cruft] <sup>[config][pyproject_toml]</sup>
+### Type checking
+- [Mypy][mypy] <sup>[config][pyproject_toml]</sup>
+    - [Mypy Extensions][mypy-extensions]
+### Testing
+- [pytest][pytest] <sup>[config][pyproject_toml]</sup>
+    - Plugins
         - [pytest-cov][pytest-cov]
         - [pytest-benchmark][pytest-benchmark]
-    - [airspeed velocity (`asv`)][asv]
-    - [Coverage.py][coveragepy] <sup>[config][pyproject_toml]</sup>
-  - Documenting
-    - [Sphinx][sphinx] <sup>[config][docs_conf_py]</sup>
-      - [Furo][furo]
-      - [sphinxcontrib-spelling][sphinxcontrib-spelling]
-      - [MyST][myst]
-    - [Google style docstrings][docstring_google]
-  - Building
-    - [Poetry][poetry]
-      - [`pyproject.toml`][pyproject_toml]
-  - Configuration Files
+- [airspeed velocity (`asv`)][asv]
+- [Coverage.py][coveragepy] <sup>[config][pyproject_toml]</sup>
+### Documenting
+- [Sphinx][sphinx] <sup>[config][docs_conf_py]</sup>
+    - [Furo][furo]
+    - [sphinxcontrib-spelling][sphinxcontrib-spelling]
+    - [MyST][myst]
+- [Google style docstrings][docstring_google]
+### Building
+- [Poetry][poetry]
     - [`pyproject.toml`][pyproject_toml]
-    - [`.pre-commit-config.yaml`][_pre-commit-config_yaml]
-    - [`.editorconfig`][_editorconfig]
-    - [`docs/conf.py`][docs_conf_py]
-    - [`docs/wordlist.txt`][docs_wordlist_txt]
-    - [`noxfile.py`][noxfile_py]
-- Standards
-  - Commits
-    - [Conventional Commits][conventionalcommits]
-  - Versioning
-    - [Semantic Versioning][semver]
-  - Contributing
-    - [All Contributors][allcontributors]
-  - [.gitignore][gitignore_python]
-- Editor
-  - [EditorConfig][editorconfig] <sup>[config][_editorconfig]</sup>
-- Guidelines
-  - [Angular `CONTRIBUTING.md`][angular-contributing]
-  - [Contributor Covenant][contributor-covenant]
-- Workflows
-  - https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
-  - https://nvie.com/posts/a-successful-git-branching-model
-  - https://github.community/t/syncing-a-fork-leaves-me-one-commit-ahead-of-upstream-master/1435/5
-- Articles
-  - [Don't commit `.vscode`][no-editor-config-gitignore]
+### Configuration Files
+- [`pyproject.toml`][pyproject_toml]
+- [`.pre-commit-config.yaml`][_pre-commit-config_yaml]
+- [`.editorconfig`][_editorconfig]
+- [`docs/conf.py`][docs_conf_py]
+- [`docs/wordlist.txt`][docs_wordlist_txt]
+- [`noxfile.py`][noxfile_py]
+## Standards
+- [.gitignore][gitignore_python]
+### Commits
+- [Conventional Commits][conventionalcommits]
+### Versioning
+- [Semantic Versioning][semver]
+### Contributing
+- [All Contributors][allcontributors]
+## Editor
+- [EditorConfig][editorconfig] <sup>[config][_editorconfig]</sup>
+## Guidelines
+- [Angular `CONTRIBUTING.md`][angular-contributing]
+- [Contributor Covenant][contributor-covenant]
+## Workflows
+- https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
+- https://nvie.com/posts/a-successful-git-branching-model
+- https://github.community/t/syncing-a-fork-leaves-me-one-commit-ahead-of-upstream-master/1435/5
+## Articles
+- [Don't commit `.vscode`][no-editor-config-gitignore]
 
 [codecov-project]: https://app.codecov.io/gh/MicaelJarniac/tool-inventory
 

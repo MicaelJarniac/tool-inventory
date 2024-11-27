@@ -3,6 +3,7 @@
 ✨ Thanks for contributing to **Tool Inventory**! ✨
 
 As a contributor, here are the guidelines we would like you to follow:
+
 - [Code of conduct](#code-of-conduct)
 - [How can I contribute?](#how-can-i-contribute)
 - [Using the issue tracker](#using-the-issue-tracker)
@@ -77,6 +78,7 @@ $ git push origin <topic-branch-name>
 6. [Open a Pull Request](https://help.github.com/articles/creating-a-pull-request/#creating-the-pull-request) with a clear title and description.
 
 **Tips**:
+
 - For ambitious tasks, open a Pull Request as soon as possible with the `[WIP]` prefix in the title, in order to get feedback and help from the community.
 - [Allow tool-inventory maintainers to make changes to your Pull Request branch](https://help.github.com/articles/allowing-changes-to-a-pull-request-branch-created-from-a-fork). This way, we can rebase it and make some minor changes if necessary. All changes we make will be done in new commit and we'll ask for your approval before merging them.
 
@@ -85,6 +87,7 @@ $ git push origin <topic-branch-name>
 ### Source code
 
 To ensure consistency and quality throughout the source code, all code modifications must have:
+
 - No [linting](#lint) errors
 - A [test](#tests) for every possible case introduced by your code change
 - **100%** test coverage
@@ -95,21 +98,22 @@ To ensure consistency and quality throughout the source code, all code modificat
 ### Documentation
 
 To ensure consistency and quality, all documentation modifications must:
+
 - Refer to brand in [bold](https://help.github.com/articles/basic-writing-and-formatting-syntax/#styling-text) with proper capitalization, i.e. **GitHub**, **Tool Inventory**
 - Prefer [tables](https://help.github.com/articles/organizing-information-with-tables) over [lists](https://help.github.com/articles/basic-writing-and-formatting-syntax/#lists) when listing key values, i.e. List of options with their description
 - Use [links](https://help.github.com/articles/basic-writing-and-formatting-syntax/#links) when you are referring to:
-  - a **Tool Inventory** concept described somewhere else in the documentation, i.e. How to [contribute](CONTRIBUTING.md)
-  - a third-party product/brand/service, i.e. Integrate with [GitHub](https://github.com)
-  - an external concept or feature, i.e. Create a [GitHub release](https://help.github.com/articles/creating-releases)
-  - a package or module, i.e. The [`@MicaelJarniac/tool-inventory`](https://github.com/MicaelJarniac/tool-inventory) module
+    - a **Tool Inventory** concept described somewhere else in the documentation, i.e. How to [contribute](CONTRIBUTING.md)
+    - a third-party product/brand/service, i.e. Integrate with [GitHub](https://github.com)
+    - an external concept or feature, i.e. Create a [GitHub release](https://help.github.com/articles/creating-releases)
+    - a package or module, i.e. The [`@MicaelJarniac/tool-inventory`](https://github.com/MicaelJarniac/tool-inventory) module
 - Use the [single backtick `code` quoting](https://help.github.com/articles/basic-writing-and-formatting-syntax/#quoting-code) for:
-  - commands inside sentences, i.e. the `poetry` command
-  - programming language keywords, i.e. `for`, `with`, `dict`
-  - packages or modules, i.e. The [`@MicaelJarniac/tool-inventory`](https://github.com/MicaelJarniac/tool-inventory) module
+    - commands inside sentences, i.e. the `poetry` command
+    - programming language keywords, i.e. `for`, `with`, `dict`
+    - packages or modules, i.e. The [`@MicaelJarniac/tool-inventory`](https://github.com/MicaelJarniac/tool-inventory) module
 - Use the [triple backtick `code` formatting](https://help.github.com/articles/creating-and-highlighting-code-blocks) for:
-  - code examples
-  - configuration examples
-  - sequence of command lines
+    - code examples
+    - configuration examples
+    - sequence of command lines
 
 ### Commit message guidelines
 
