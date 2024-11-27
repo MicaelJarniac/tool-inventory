@@ -8,9 +8,8 @@ build:
     # https://docs.readthedocs.io/en/stable/build-customization.html#install-dependencies-with-poetry
     post_create_environment:
       - pip install poetry
-      - poetry config virtualenvs.create false
     post_install:
-      - poetry install --only main,docs --all-extras
+      - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH poetry install --only main,docs --all-extras
 
 # Build from the docs/ directory with MkDocs
 mkdocs:
