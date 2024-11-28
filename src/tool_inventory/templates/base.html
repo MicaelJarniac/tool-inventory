@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tool Inventory</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Tool Inventory Management</h1>
+        <nav>
+            <a href="{{ url_for('web_read_tools') }}">Home</a>
+            <a href="{{ url_for('web_create_tool_form') }}">Add New Tool</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

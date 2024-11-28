@@ -10,27 +10,27 @@ from fastapi import APIRouter, status
 from sqlmodel import Session
 
 from tool_inventory.connections import Database, engine
-from tool_inventory.models import Tool  # noqa: TC001
+from tool_inventory.models import Tool, ToolCreate, ToolPatch  # noqa: TC001
 
-router = APIRouter(prefix="/tool")
+router = APIRouter(prefix="/api/tool")
 
 
 @router.post(
-    "/create",
+    "/",
     status_code=status.HTTP_201_CREATED,
     summary="Create a tool",
 )
 async def create_tool(
-    tool: Tool,
+    tool: ToolCreate,
 ) -> Tool:
     """Create a tool."""
     with Session(engine) as session:
         db = Database(session)
-        return db.create_tool(tool)
+        return db.create_tool(tool.to_model())
 
 
 @router.get(
-    "/by_id/{tool_id}",
+    "/{tool_id}",
     summary="Get a tool by ID",
 )
 async def get_tool_by_id(
@@ -40,3 +40,32 @@ async def get_tool_by_id(
     with Session(engine) as session:
         db = Database(session)
         return db.get_tool_by_id(tool_id)
+
+
+@router.get(
+    "/",
+    summary="Get tools",
+)
+async def get_tools(
+    name: str | None = None,
+) -> list[Tool]:
+    """Get tools by name."""
+    with Session(engine) as session:
+        db = Database(session)
+        return db.get_tools(name=name)
+
+
+@router.patch(
+    "/{tool_id}",
+    summary="Update a tool",
+)
+async def update_tool(
+    tool_id: UUID,
+    tool_patch: ToolPatch,
+) -> Tool:
+    """Update a tool."""
+    with Session(engine) as session:
+        db = Database(session)
+        tool = db.get_tool_by_id(tool_id)
+        tool_patch.patch(tool)
+        return db.update_tool(tool)

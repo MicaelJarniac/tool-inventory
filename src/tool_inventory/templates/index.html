@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Tool List</h2>
+    <ul>
+        {% for tool in tools %}
+            <li>
+                <strong>{{ tool.name }}</strong>: {{ tool.description }} ({{ tool.quantity }})
+                <a href="{{ url_for('web_edit_tool_form', tool_id=tool.id) }}">Edit</a>
+                <form action="{{ url_for('web_delete_tool', tool_id=tool.id) }}" method="post" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

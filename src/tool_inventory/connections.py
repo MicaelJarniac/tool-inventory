@@ -77,13 +77,33 @@ class Database:
         except NoResultFound as err:
             raise ToolNotFoundError(tool_id) from err
 
+    def get_tools(self, name: str | None = None) -> list[Tool]:
+        """Get tools."""
+        statement = select(Tool)
+        if name:
+            statement = statement.where(Tool.name == name)
+        result = self.session.exec(statement)
+        return list(result.all())
+
     def create_tool(self, tool: Tool, /) -> Tool:
         """Create a tool."""
+        Tool.model_validate(tool)
         self.session.add(tool)
         try:
             self.session.commit()
         except IntegrityError as err:
             raise ToolExistsError(tool.id) from err
+        self.session.refresh(tool)
+        return tool
+
+    def update_tool(self, tool: Tool, /) -> Tool:
+        """Update a tool."""
+        Tool.model_validate(tool)
+        self.session.add(tool)
+        try:
+            self.session.commit()
+        except IntegrityError as err:
+            raise ToolNotFoundError(tool.id) from err
         self.session.refresh(tool)
         return tool
 

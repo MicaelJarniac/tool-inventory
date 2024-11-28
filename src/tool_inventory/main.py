@@ -10,10 +10,13 @@ from typing import TYPE_CHECKING
 
 from fastapi import FastAPI, Request, status
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
 from loguru import logger
+from pydantic import ValidationError
 
+from tool_inventory import root
 from tool_inventory.connections import ObjectExistsError, ObjectNotFoundError
-from tool_inventory.routers import tools
+from tool_inventory.routers import tools, webapp
 
 if TYPE_CHECKING:
     from collections.abc import AsyncGenerator
@@ -27,6 +30,8 @@ async def lifespan(_app: FastAPI) -> AsyncGenerator[None]:
 
 
 app = FastAPI(lifespan=lifespan)
+
+app.mount("/static", StaticFiles(directory=root / "static"), name="static")
 
 
 @app.exception_handler(ObjectNotFoundError)
@@ -51,4 +56,16 @@ async def object_exists_error_handler(
     )
 
 
+@app.exception_handler(ValidationError)
+async def validation_error_handler(
+    _request: Request,
+    exc: ValidationError,
+) -> JSONResponse:
+    return JSONResponse(
+        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+        content={"detail": exc.errors()},
+    )
+
+
 app.include_router(tools.router)
+app.include_router(webapp.router)
