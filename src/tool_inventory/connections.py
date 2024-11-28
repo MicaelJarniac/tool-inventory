@@ -1,4 +1,20 @@
-"""Connections."""
+"""Connections.
+
+This module contains the database connection and operations for the tool inventory
+application.
+It includes classes for handling database operations and custom exceptions for error
+handling.
+
+Classes:
+    - ObjectNotFoundError: Exception raised when an object is not found.
+    - ToolNotFoundError: Exception raised when a tool is not found.
+    - ObjectExistsError: Exception raised when an object already exists.
+    - ToolExistsError: Exception raised when a tool already exists.
+    - Database: Class for handling database operations.
+
+Functions:
+    - setup_database: Setup the database.
+"""
 
 from __future__ import annotations
 
@@ -29,7 +45,11 @@ class ObjectNotFoundError(Exception):
     """Object not found error."""
 
     def __init__(self, object_id: UUID, /) -> None:
-        """Initialize object not found error."""
+        """Initialize object not found error.
+
+        Args:
+            object_id: The UUID of the object.
+        """
         self.object_id = object_id
         self.detail = "Object not found"
 
@@ -38,7 +58,11 @@ class ToolNotFoundError(ObjectNotFoundError):
     """Tool not found error."""
 
     def __init__(self, tool_id: UUID, /) -> None:
-        """Initialize tool not found error."""
+        """Initialize tool not found error.
+
+        Args:
+            tool_id: The UUID of the tool.
+        """
         super().__init__(tool_id)
         self.detail = "Tool not found"
 
@@ -47,7 +71,11 @@ class ObjectExistsError(Exception):
     """Object exists error."""
 
     def __init__(self, object_id: UUID, /) -> None:
-        """Initialize object exists error."""
+        """Initialize object exists error.
+
+        Args:
+            object_id: The UUID of the object.
+        """
         self.object_id = object_id
         self.detail = "Object already exists"
 
@@ -56,7 +84,11 @@ class ToolExistsError(ObjectExistsError):
     """Tool exists error."""
 
     def __init__(self, tool_id: UUID, /) -> None:
-        """Initialize tool exists error."""
+        """Initialize tool exists error.
+
+        Args:
+            tool_id: The UUID of the tool.
+        """
         super().__init__(tool_id)
         self.detail = "Tool already exists"
 
@@ -65,11 +97,25 @@ class Database:
     """Database connection."""
 
     def __init__(self, session: Session, /) -> None:
-        """Initialize database connection."""
+        """Initialize database connection.
+
+        Args:
+            session: The database session.
+        """
         self.session = session
 
     def get_tool_by_id(self, tool_id: UUID, /) -> Tool:
-        """Get a tool by ID."""
+        """Get a tool by ID.
+
+        Args:
+            tool_id: The UUID of the tool.
+
+        Returns:
+            The tool with the specified ID.
+
+        Raises:
+            ToolNotFoundError: If the tool is not found.
+        """
         statement = select(Tool).where(Tool.id == tool_id)
         result = self.session.exec(statement)
         try:
@@ -78,7 +124,14 @@ class Database:
             raise ToolNotFoundError(tool_id) from err
 
     def get_tools(self, name: str | None = None) -> list[Tool]:
-        """Get tools."""
+        """Get tools.
+
+        Args:
+            name: The name of the tool to filter by.
+
+        Returns:
+            A list of tools.
+        """
         statement = select(Tool)
         if name:
             statement = statement.where(Tool.name == name)
@@ -86,7 +139,17 @@ class Database:
         return list(result.all())
 
     def create_tool(self, tool: Tool, /) -> Tool:
-        """Create a tool."""
+        """Create a tool.
+
+        Args:
+            tool: The tool to create.
+
+        Returns:
+            The created tool.
+
+        Raises:
+            ToolExistsError: If the tool already exists.
+        """
         Tool.model_validate(tool)
         self.session.add(tool)
         try:
@@ -97,7 +160,17 @@ class Database:
         return tool
 
     def update_tool(self, tool: Tool, /) -> Tool:
-        """Update a tool."""
+        """Update a tool.
+
+        Args:
+            tool: The tool to update.
+
+        Returns:
+            The updated tool.
+
+        Raises:
+            ToolNotFoundError: If the tool is not found.
+        """
         Tool.model_validate(tool)
         self.session.add(tool)
         try:
@@ -108,7 +181,14 @@ class Database:
         return tool
 
     def delete_tool(self, tool_id: UUID, /) -> None:
-        """Delete a tool."""
+        """Delete a tool.
+
+        Args:
+            tool_id: The UUID of the tool to delete.
+
+        Raises:
+            ToolNotFoundError: If the tool is not found.
+        """
         tool = self.get_tool_by_id(tool_id)
         self.session.delete(tool)
         self.session.commit()

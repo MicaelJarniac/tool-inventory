@@ -1,4 +1,14 @@
-"""Tool Inventory Router."""
+"""Tool Inventory Router.
+
+This module contains the API routes for managing tools in the tool inventory.
+It provides endpoints for creating, reading, and updating tools.
+
+Routes:
+    - POST /api/tool: Create a new tool.
+    - GET /api/tool/{tool_id}: Get a tool by its ID.
+    - GET /api/tool: Get tools by name.
+    - PATCH /api/tool/{tool_id}: Update an existing tool.
+"""
 
 from __future__ import annotations
 
@@ -23,7 +33,14 @@ router = APIRouter(prefix="/api/tool")
 async def create_tool(
     tool: ToolCreate,
 ) -> Tool:
-    """Create a tool."""
+    """Create a new tool.
+
+    Args:
+        tool: The tool creation model.
+
+    Returns:
+        The created tool.
+    """
     with Session(engine) as session:
         db = Database(session)
         return db.create_tool(tool.to_model())
@@ -36,7 +53,14 @@ async def create_tool(
 async def get_tool_by_id(
     tool_id: UUID,
 ) -> Tool:
-    """Get a tool by ID."""
+    """Get a tool by its ID.
+
+    Args:
+        tool_id: The UUID of the tool.
+
+    Returns:
+        The tool with the specified ID.
+    """
     with Session(engine) as session:
         db = Database(session)
         return db.get_tool_by_id(tool_id)
@@ -49,7 +73,14 @@ async def get_tool_by_id(
 async def get_tools(
     name: str | None = None,
 ) -> list[Tool]:
-    """Get tools by name."""
+    """Get tools by name.
+
+    Args:
+        name: The name of the tool to filter by.
+
+    Returns:
+        A list of tools.
+    """
     with Session(engine) as session:
         db = Database(session)
         return db.get_tools(name=name)
@@ -63,7 +94,15 @@ async def update_tool(
     tool_id: UUID,
     tool_patch: ToolPatch,
 ) -> Tool:
-    """Update a tool."""
+    """Update an existing tool.
+
+    Args:
+        tool_id: The UUID of the tool to update.
+        tool_patch: The tool patch model.
+
+    Returns:
+        The updated tool.
+    """
     with Session(engine) as session:
         db = Database(session)
         tool = db.get_tool_by_id(tool_id)

@@ -1,4 +1,7 @@
-"""Tool inventory."""
+"""Tool inventory.
+
+This package contains the core functionality of the tool inventory application.
+"""
 
 from __future__ import annotations
 

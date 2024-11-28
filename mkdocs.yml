@@ -28,6 +28,7 @@ theme:
 nav:
   - Tool Inventory: README.md
   - Learn: learn.md
+  - Code Reference: reference/
   - Contributing: CONTRIBUTING.md
   - Reference: reference.md
   - Changelog: CHANGELOG.md
@@ -35,6 +36,12 @@ nav:
 
 plugins:
   - search
+  - gen-files:
+      scripts:
+        - scripts/gen_ref_pages.py
+  - literate-nav:
+      nav_file: SUMMARY.md
+  - section-index
   - mkdocstrings:
       handlers:
         python:

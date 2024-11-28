@@ -95,8 +95,8 @@ poetry add git+git://github.com/MicaelJarniac/tool-inventory
 ## Usage
 For more examples, see the [full documentation][docs].
 
-```python
-from tool_inventory import tool_inventory
+```bash
+fastapi dev src/tool_inventory/main.py
 ```
 
 ## Contributing

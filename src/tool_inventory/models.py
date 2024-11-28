@@ -1,4 +1,13 @@
-"""Models."""
+"""Models.
+
+This module contains the data models for the tool inventory application.
+It includes models for creating, updating, and representing tools.
+
+Classes:
+    - ToolCreate: Model for creating a new tool.
+    - Tool: Model representing a tool.
+    - ToolPatch: Model for updating an existing tool.
+"""
 
 from __future__ import annotations
 
@@ -24,7 +33,11 @@ class ToolCreate(BaseModel):
     image: str = ""
 
     def to_model(self) -> Tool:
-        """Convert to a tool model."""
+        """Convert to a tool model.
+
+        Returns:
+            The tool model.
+        """
         tool = Tool(
             name=self.name.strip(),
             quantity=self.quantity,
@@ -54,7 +67,14 @@ class ToolPatch(BaseModel):
     image: str | None = None
 
     def patch(self, tool: Tool) -> Tool:
-        """Patch a tool."""
+        """Patch a tool.
+
+        Args:
+            tool: The tool to patch.
+
+        Returns:
+            The patched tool.
+        """
         if self.name is not None:
             tool.name = self.name
         if self.quantity is not None:

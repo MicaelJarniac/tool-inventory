@@ -1,4 +1,18 @@
-"""Webapp router."""
+"""Webapp router.
+
+This module contains the web routes for the tool inventory application.
+It provides endpoints for creating, reading, updating, and deleting tools,
+as well as updating tool quantities.
+
+Routes:
+    - GET /: Fetch and display all tools.
+    - GET /create: Render the tool creation form.
+    - POST /create: Create a new tool.
+    - GET /edit/{tool_id}: Render the tool edit form.
+    - POST /edit/{tool_id}: Edit an existing tool.
+    - POST /delete/{tool_id}: Delete a tool.
+    - POST /update_quantity/{tool_id}: Update the quantity of a tool.
+"""
 
 from __future__ import annotations
 
@@ -24,6 +38,14 @@ templates = Jinja2Templates(directory=root / "templates")
 async def web_read_tools(
     request: Request,
 ) -> HTMLResponse:
+    """Fetch and display all tools.
+
+    Args:
+        request: The request object.
+
+    Returns:
+        An HTML response with the list of tools.
+    """
     with Session(engine) as session:
         db = Database(session)
         tools = db.get_tools()
@@ -37,6 +59,14 @@ async def web_read_tools(
 async def web_create_tool_form(
     request: Request,
 ) -> HTMLResponse:
+    """Render the tool creation form.
+
+    Args:
+        request: The request object.
+
+    Returns:
+        An HTML response with the tool creation form.
+    """
     return templates.TemplateResponse(
         "tool_form.html",
         {"request": request},
@@ -49,6 +79,16 @@ async def web_create_tool(
     description: Annotated[str, Form()],
     quantity: Annotated[int, Form()],
 ) -> RedirectResponse:
+    """Create a new tool.
+
+    Args:
+        name: The name of the tool.
+        description: The description of the tool.
+        quantity: The quantity of the tool.
+
+    Returns:
+        A redirect response to the home page.
+    """
     with Session(engine) as session:
         db = Database(session)
         db.create_tool(
@@ -66,6 +106,15 @@ async def web_edit_tool_form(
     request: Request,
     tool_id: UUID,
 ) -> HTMLResponse:
+    """Render the tool edit form.
+
+    Args:
+        request: The request object.
+        tool_id: The UUID of the tool to edit.
+
+    Returns:
+        An HTML response with the tool edit form.
+    """
     with Session(engine) as session:
         db = Database(session)
         return templates.TemplateResponse(
@@ -81,6 +130,17 @@ async def web_edit_tool(
     description: Annotated[str, Form()],
     quantity: Annotated[int, Form()],
 ) -> RedirectResponse:
+    """Edit an existing tool.
+
+    Args:
+        tool_id: The UUID of the tool to edit.
+        name: The new name of the tool.
+        description: The new description of the tool.
+        quantity: The new quantity of the tool.
+
+    Returns:
+        A redirect response to the home page.
+    """
     with Session(engine) as session:
         db = Database(session)
         db.update_tool(
@@ -97,6 +157,14 @@ async def web_edit_tool(
 async def web_delete_tool(
     tool_id: UUID,
 ) -> RedirectResponse:
+    """Delete a tool.
+
+    Args:
+        tool_id: The UUID of the tool to delete.
+
+    Returns:
+        A redirect response to the home page.
+    """
     with Session(engine) as session:
         db = Database(session)
         db.delete_tool(tool_id)
@@ -108,6 +176,15 @@ async def web_update_quantity(
     tool_id: UUID,
     action: Annotated[str, Form()],
 ) -> RedirectResponse:
+    """Update the quantity of a tool.
+
+    Args:
+        tool_id: The UUID of the tool to update.
+        action: The action to perform (increment or decrement).
+
+    Returns:
+        A redirect response to the home page.
+    """
     with Session(engine) as session:
         db = Database(session)
         tool = db.get_tool_by_id(tool_id)
