@@ -1,16 +1,35 @@
 {% extends "base.html" %}
-
 {% block content %}
     <h2>Tool List</h2>
-    <ul>
-        {% for tool in tools %}
-            <li>
-                <strong>{{ tool.name }}</strong>: {{ tool.description }} ({{ tool.quantity }})
-                <a href="{{ url_for('web_edit_tool_form', tool_id=tool.id) }}">Edit</a>
-                <form action="{{ url_for('web_delete_tool', tool_id=tool.id) }}" method="post" style="display:inline;">
-                    <button type="submit">Delete</button>
-                </form>
-            </li>
-        {% endfor %}
-    </ul>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tool in tools %}
+                <tr>
+                    <td>{{ tool.name }}</td>
+                    <td>{{ tool.description }}</td>
+                    <td>
+                        <form action="{{ url_for('web_update_quantity', tool_id=tool.id) }}" method="post" style="display:inline;">
+                            <button type="submit" name="action" value="decrement" class="btn btn-outline-secondary">-</button>
+                            {{ tool.quantity }}
+                            <button type="submit" name="action" value="increment" class="btn btn-outline-secondary">+</button>
+                        </form>
+                    </td>
+                    <td>
+                        <a href="{{ url_for('web_edit_tool', tool_id=tool.id) }}" class="btn btn-sm btn-warning">Edit</a>
+                        <form action="{{ url_for('web_delete_tool', tool_id=tool.id) }}" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

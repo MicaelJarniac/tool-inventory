@@ -107,6 +107,12 @@ class Database:
         self.session.refresh(tool)
         return tool
 
+    def delete_tool(self, tool_id: UUID, /) -> None:
+        """Delete a tool."""
+        tool = self.get_tool_by_id(tool_id)
+        self.session.delete(tool)
+        self.session.commit()
+
 
 engine = create_engine("sqlite:///tools.db", echo=True)
 

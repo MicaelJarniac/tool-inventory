@@ -5,16 +5,16 @@ from __future__ import annotations
 __all__: list[str] = ["router"]
 
 from typing import Annotated
-from uuid import UUID
+from uuid import UUID  # noqa: TC003
 
 from fastapi import APIRouter, Form, Request, status
-from fastapi.responses import HTMLResponse, RedirectResponse  # noqa: TC002
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from sqlmodel import Session
 
 from tool_inventory import root
 from tool_inventory.connections import Database, engine
-from tool_inventory.models import Tool, ToolCreate, ToolPatch
+from tool_inventory.models import ToolCreate, ToolPatch
 
 router = APIRouter()
 templates = Jinja2Templates(directory=root / "templates")
@@ -99,5 +99,24 @@ async def web_delete_tool(
 ) -> RedirectResponse:
     with Session(engine) as session:
         db = Database(session)
-        db.delete_tool(db.get_tool_by_id(tool_id))
+        db.delete_tool(tool_id)
+    return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
+
+
+@router.post("/update_quantity/{tool_id}")
+async def web_update_quantity(
+    tool_id: UUID,
+    action: Annotated[str, Form()],
+) -> RedirectResponse:
+    with Session(engine) as session:
+        db = Database(session)
+        tool = db.get_tool_by_id(tool_id)
+        db.update_tool(
+            ToolPatch(
+                quantity=max(
+                    0,
+                    tool.quantity + 1 if action == "increment" else tool.quantity - 1,
+                ),
+            ).patch(tool),
+        )
     return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)

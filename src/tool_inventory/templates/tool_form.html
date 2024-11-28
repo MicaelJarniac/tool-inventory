@@ -1,14 +1,21 @@
 {% extends "base.html" %}
-
 {% block content %}
     <h2>{{ "Edit Tool" if tool else "Add New Tool" }}</h2>
-    <form action="{{ url_for('web_edit_tool', tool_id=tool.id) if tool else url_for('web_create_tool') }}" method="post">
-        <label for="name">Name:</label>
-        <input id="name" name="name" type="text" value="{{ tool.name if tool else '' }}" required>
-        <label for="description">Description:</label>
-        <input id="description" name="description" type="text" value="{{ tool.description if tool else '' }}">
-        <label for="quantity">Quantity:</label>
-        <input id="quantity" name="quantity" type="number" value="{{ tool.quantity if tool else '' }}" required>
-        <button type="submit">{{ "Update" if tool else "Create" }}</button>
+    <form action="{{ url_for('web_edit_tool', tool_id=tool.id) if tool else url_for('web_create_tool') }}" method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input id="name" name="name" type="text" class="form-control" value="{{ tool.name if tool else '' }}" required>
+            <div class="invalid-feedback">Please provide a name.</div>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description:</label>
+            <input id="description" name="description" type="text" class="form-control" value="{{ tool.description if tool else '' }}">
+        </div>
+        <div class="mb-3">
+            <label for="quantity" class="form-label">Quantity:</label>
+            <input id="quantity" name="quantity" type="number" class="form-control" value="{{ tool.quantity if tool else '' }}" required>
+            <div class="invalid-feedback">Please provide a quantity.</div>
+        </div>
+        <button type="submit" class="btn btn-primary">{{ "Update" if tool else "Create" }}</button>
     </form>
 {% endblock %}
