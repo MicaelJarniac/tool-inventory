@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "tool-inventory"
-version = "0.2.0"
+version = "0.3.0"
 description = "Tool inventory."
 authors = ["Micael Jarniac <micael@jarniac.dev>"]
 license = "MIT"

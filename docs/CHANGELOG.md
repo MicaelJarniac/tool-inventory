@@ -2,6 +2,13 @@
 
 
 
+## v0.3.0 (2024-11-28)
+
+### Feature
+
+* feat: better webapp ([`9a5f61e`](https://github.com/MicaelJarniac/tool-inventory/commit/9a5f61efb18b635b0fa7f6a6d009b89133545576))
+
+
 ## v0.2.0 (2024-11-28)
 
 ### Documentation
