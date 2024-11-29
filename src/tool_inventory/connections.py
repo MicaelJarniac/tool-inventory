@@ -32,6 +32,7 @@ from typing import TYPE_CHECKING
 
 from sqlalchemy.exc import IntegrityError, NoResultFound
 from sqlmodel import SQLModel, create_engine, select
+from thefuzz import fuzz
 
 from tool_inventory.models import Tool
 
@@ -137,6 +138,23 @@ class Database:
             statement = statement.where(Tool.name == name)
         result = self.session.exec(statement)
         return list(result.all())
+
+    def search_tools(self, query: str, /) -> list[Tool]:
+        """Search tools.
+
+        Args:
+            query: The search query.
+
+        Returns:
+            A list of tools.
+        """
+        statement = select(Tool)
+        result = self.session.exec(statement)
+        matches: list[tuple[int, Tool]] = []
+        for tool in result.all():
+            if (score := fuzz.ratio(query.lower(), tool.name.lower())) > 50:
+                matches.append((score, tool))
+        return [tool for _, tool in sorted(matches, reverse=True)]
 
     def create_tool(self, tool: Tool, /) -> Tool:
         """Create a tool.

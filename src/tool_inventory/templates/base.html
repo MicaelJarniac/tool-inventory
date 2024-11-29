@@ -12,6 +12,10 @@
                 <a href="{{ url_for('web_read_tools') }}" class="text-white me-3">Home</a>
                 <a href="{{ url_for('web_create_tool_form') }}" class="text-white">Add New Tool</a>
             </nav>
+            <form action="{{ url_for('web_search_tools') }}" method="get" class="d-flex mt-3">
+                <input class="form-control me-2" type="search" name="query" placeholder="Search tools" aria-label="Search">
+                <button class="btn btn-outline-light" type="submit">Search</button>
+            </form>
         </div>
     </header>
     <main class="container mt-4">

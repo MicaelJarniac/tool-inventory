@@ -28,6 +28,7 @@ python = "^3.13"
 loguru = "^0.7.0"
 sqlmodel = "^0.0.22"
 fastapi = {extras = ["standard"], version = "^0.115.5"}
+thefuzz = "^0.22.1"
 
 [tool.poetry.group.tests.dependencies]
 coverage = "^7.2.7"

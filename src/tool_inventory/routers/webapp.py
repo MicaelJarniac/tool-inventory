@@ -197,3 +197,26 @@ async def web_update_quantity(
             ).patch(tool),
         )
     return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
+
+
+@router.get("/search")
+async def web_search_tools(
+    request: Request,
+    query: str,
+) -> HTMLResponse:
+    """Search for tools.
+
+    Args:
+        request: The request object.
+        query: The search query.
+
+    Returns:
+        An HTML response with the search results.
+    """
+    with Session(engine) as session:
+        db = Database(session)
+        tools = db.search_tools(query)
+        return templates.TemplateResponse(
+            "index.html",
+            {"request": request, "tools": tools},
+        )
