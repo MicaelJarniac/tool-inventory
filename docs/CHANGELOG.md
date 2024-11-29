@@ -2,6 +2,19 @@
 
 
 
+## v0.5.0 (2024-11-29)
+
+### Feature
+
+* feat: dynamic updates ([`ff11955`](https://github.com/MicaelJarniac/tool-inventory/commit/ff11955f1dd7918bffceb3d5c12db622a62a2698))
+
+### Unknown
+
+* Added Use Case Diagram.drawio.svg ([`0086693`](https://github.com/MicaelJarniac/tool-inventory/commit/0086693886594d6e635517b53c9e7130fa226776))
+
+* Added Use Case Diagram.drawio ([`bfbd890`](https://github.com/MicaelJarniac/tool-inventory/commit/bfbd890ea5f2e189ca3210711b7f95860729bc24))
+
+
 ## v0.4.0 (2024-11-29)
 
 ### Documentation
