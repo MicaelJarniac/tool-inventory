@@ -1,5 +1,7 @@
 # Learn
 
+![Use Case Diagram](./Use%20Case%20Diagram.drawio.svg)
+
 ## Using the Webapp
 
 The Tool Inventory webapp allows you to manage your tools efficiently. Here are the main features:
