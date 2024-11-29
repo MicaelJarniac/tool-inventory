@@ -155,27 +155,32 @@ async def web_edit_tool(
 
 @router.post("/delete/{tool_id}")
 async def web_delete_tool(
+    request: Request,
     tool_id: UUID,
-) -> RedirectResponse:
+) -> HTMLResponse:
     """Delete a tool.
 
     Args:
         tool_id: The UUID of the tool to delete.
 
     Returns:
-        A redirect response to the home page.
+        A script to delete the tool.
     """
     with Session(engine) as session:
         db = Database(session)
         db.delete_tool(tool_id)
-    return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
+    return templates.TemplateResponse(
+        "delete_tool.html",
+        {"request": request, "tool_id": tool_id},
+    )
 
 
 @router.post("/update_quantity/{tool_id}")
 async def web_update_quantity(
+    request: Request,
     tool_id: UUID,
     action: Annotated[str, Form()],
-) -> RedirectResponse:
+) -> HTMLResponse:
     """Update the quantity of a tool.
 
     Args:
@@ -183,7 +188,7 @@ async def web_update_quantity(
         action: The action to perform (increment or decrement).
 
     Returns:
-        A redirect response to the home page.
+        A script to update quantity.
     """
     with Session(engine) as session:
         db = Database(session)
@@ -196,7 +201,10 @@ async def web_update_quantity(
                 ),
             ).patch(tool),
         )
-    return RedirectResponse("/", status_code=status.HTTP_303_SEE_OTHER)
+    return templates.TemplateResponse(
+        "update_quantity.html",
+        {"request": request, "tool_id": tool.id, "quantity": tool.quantity},
+    )
 
 
 @router.get("/search")
@@ -218,5 +226,5 @@ async def web_search_tools(
         tools = db.search_tools(query)
         return templates.TemplateResponse(
             "index.html",
-            {"request": request, "tools": tools},
+            {"request": request, "query": query, "tools": tools},
         )

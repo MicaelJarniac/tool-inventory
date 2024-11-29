@@ -12,21 +12,23 @@
         </thead>
         <tbody>
             {% for tool in tools %}
-                <tr>
+                <tr id="tool-{{ tool.id }}">
                     <td>{{ tool.name }}</td>
                     <td>{{ tool.description }}</td>
                     <td>
-                        <form action="{{ url_for('web_update_quantity', tool_id=tool.id) }}" method="post" style="display:inline;">
+                        <form action="{{ url_for('web_update_quantity', tool_id=tool.id) }}" method="post" target="quantity-iframe-{{ tool.id }}" style="display:inline;">
                             <button type="submit" name="action" value="decrement" class="btn btn-outline-secondary">-</button>
-                            {{ tool.quantity }}
+                            <span id="quantity-{{ tool.id }}">{{ tool.quantity }}</span>
                             <button type="submit" name="action" value="increment" class="btn btn-outline-secondary">+</button>
                         </form>
+                        <iframe name="quantity-iframe-{{ tool.id }}" style="display:none;"></iframe>
                     </td>
                     <td>
                         <a href="{{ url_for('web_edit_tool', tool_id=tool.id) }}" class="btn btn-sm btn-warning">Edit</a>
-                        <form action="{{ url_for('web_delete_tool', tool_id=tool.id) }}" method="post" class="d-inline">
+                        <form action="{{ url_for('web_delete_tool', tool_id=tool.id) }}" method="post" target="tool-delete-{{ tool.id }}" class="d-inline">
                             <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                         </form>
+                        <iframe name="tool-delete-{{ tool.id }}" style="display:none;"></iframe>
                     </td>
                 </tr>
             {% endfor %}

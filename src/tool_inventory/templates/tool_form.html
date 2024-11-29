@@ -13,7 +13,7 @@
         </div>
         <div class="mb-3">
             <label for="quantity" class="form-label">Quantity:</label>
-            <input id="quantity" name="quantity" type="number" class="form-control" value="{{ tool.quantity if tool else '' }}" required>
+            <input id="quantity" name="quantity" type="number" class="form-control" value="{{ tool.quantity if tool else '1' }}" required>
             <div class="invalid-feedback">Please provide a quantity.</div>
         </div>
         <button type="submit" class="btn btn-primary">{{ "Update" if tool else "Create" }}</button>
