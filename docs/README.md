@@ -59,7 +59,7 @@
 [badge-license]: https://img.shields.io/github/license/MicaelJarniac/tool-inventory?style=flat-square
 [license]: https://github.com/MicaelJarniac/tool-inventory/blob/main/LICENSE
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[badge-all-contributors]: https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square
+[badge-all-contributors]: https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [contributors]: #Contributors-✨
 [badge-code-of-conduct]: https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa?style=flat-square
@@ -111,6 +111,11 @@ More details can be found in [CONTRIBUTING](CONTRIBUTING.md).
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/MicaelJarniac"><img src="https://avatars.githubusercontent.com/u/19514231?v=4?s=100" width="100px;" alt="Micael Jarniac"/><br /><sub><b>Micael Jarniac</b></sub></a><br /><a href="https://github.com/MicaelJarniac/tool-inventory/commits?author=MicaelJarniac" title="Code">💻</a></td>
+    </tr>
+  </tbody>
 </table>
 
 <!-- markdownlint-restore -->
