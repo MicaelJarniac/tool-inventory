@@ -2,6 +2,17 @@
 
 
 
+## v0.4.0 (2024-11-29)
+
+### Documentation
+
+* docs: better docs ([`a495b6b`](https://github.com/MicaelJarniac/tool-inventory/commit/a495b6b709dc80a075da278cbe8ccf3ee55ffdd2))
+
+### Feature
+
+* feat: fuzzy search ([`a17ef72`](https://github.com/MicaelJarniac/tool-inventory/commit/a17ef72b7bd4543f0597375b6f5a35324de40460))
+
+
 ## v0.3.0 (2024-11-28)
 
 ### Feature
