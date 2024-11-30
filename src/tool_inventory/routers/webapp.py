@@ -161,6 +161,7 @@ async def web_delete_tool(
     """Delete a tool.
 
     Args:
+        request: The request object.
         tool_id: The UUID of the tool to delete.
 
     Returns:
@@ -184,6 +185,7 @@ async def web_update_quantity(
     """Update the quantity of a tool.
 
     Args:
+        request: The request object.
         tool_id: The UUID of the tool to update.
         action: The action to perform (increment or decrement).
 

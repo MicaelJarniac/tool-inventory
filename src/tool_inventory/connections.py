@@ -32,7 +32,7 @@ from typing import TYPE_CHECKING
 
 from sqlalchemy.exc import IntegrityError, NoResultFound
 from sqlmodel import SQLModel, create_engine, select
-from thefuzz import fuzz
+from thefuzz import fuzz  # type: ignore[import-untyped]
 
 from tool_inventory.models import Tool
 
@@ -152,8 +152,8 @@ class Database:
         result = self.session.exec(statement)
         matches: list[tuple[int, Tool]] = []
         for tool in result.all():
-            if (score := fuzz.ratio(query.lower(), tool.name.lower())) > 50:
-                matches.append((score, tool))
+            if (score := fuzz.ratio(query.lower(), tool.name.lower())) > 50:  # noqa: PLR2004
+                matches.append((score, tool))  # noqa: PERF401
         return [tool for _, tool in sorted(matches, reverse=True)]
 
     def create_tool(self, tool: Tool, /) -> Tool:
