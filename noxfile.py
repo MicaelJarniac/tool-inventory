@@ -71,7 +71,7 @@ def type_check_code(session: nox.Session) -> None:
     """Type-check code."""
     install(
         session,
-        groups=["main", "typing"],
+        groups=["main", "typing", "docs"],
         root=True,
         only=True,
         extras=True,
