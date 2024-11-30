@@ -53,6 +53,7 @@ pymdown-extensions = "^10.12"
 mkdocs-gen-files = "^0.5.0"
 mkdocs-section-index = "^0.3.9"
 mkdocs-literate-nav = "^0.6.1"
+griffe-pydantic = "^1.1.0"
 
 [tool.poetry.group.typing.dependencies]
 # Typing stubs go here

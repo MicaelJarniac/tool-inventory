@@ -50,6 +50,9 @@ plugins:
             show_symbol_type_toc: true
             separate_signature: true
             show_signature_annotations: true
+            extensions:
+              - griffe_pydantic:
+                  schema: true
 
 markdown_extensions:
   - toc:
