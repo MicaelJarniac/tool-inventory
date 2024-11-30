@@ -2,6 +2,33 @@
 
 
 
+## v0.6.0 (2024-11-30)
+
+### Chore
+
+* chore: install docs for type checking ([`e457437`](https://github.com/MicaelJarniac/tool-inventory/commit/e4574378abfe8c7d933ffc877a302a5d605a51bc))
+
+* chore: lint and type fixes ([`98127a6`](https://github.com/MicaelJarniac/tool-inventory/commit/98127a6363af40bfd3d21a347dbd6fd0d7c0972c))
+
+### Documentation
+
+* docs: update .all-contributorsrc [skip ci] ([`e781c37`](https://github.com/MicaelJarniac/tool-inventory/commit/e781c376384213249a04dba4a9e1fd444d08e101))
+
+* docs: update docs/README.md [skip ci] ([`3870df7`](https://github.com/MicaelJarniac/tool-inventory/commit/3870df78a31322ec458b1e9a70ce51d3520dc2ca))
+
+* docs: use case diagram ([`943026e`](https://github.com/MicaelJarniac/tool-inventory/commit/943026e3e77f760467145bd3634d47754eccdfe6))
+
+### Feature
+
+* feat: basic CLI ([`f80174d`](https://github.com/MicaelJarniac/tool-inventory/commit/f80174d1b2334fe70386399ef424c30afc266bdc))
+
+### Unknown
+
+* Merge pull request #13 from MicaelJarniac/all-contributors/add-MicaelJarniac
+
+docs: add MicaelJarniac as a contributor for code ([`3cb0f71`](https://github.com/MicaelJarniac/tool-inventory/commit/3cb0f71b450f9c4b63d1d32525e850bd4f3e4e94))
+
+
 ## v0.5.0 (2024-11-29)
 
 ### Feature
