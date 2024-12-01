@@ -2,11 +2,6 @@
 
 This module contains the data models for the tool inventory application.
 It includes models for creating, updating, and representing tools.
-
-Classes:
-    - ToolCreate: Model for creating a new tool.
-    - Tool: Model representing a tool.
-    - ToolPatch: Model for updating an existing tool.
 """
 
 from __future__ import annotations

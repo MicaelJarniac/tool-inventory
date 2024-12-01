@@ -2,12 +2,6 @@
 
 This module contains the API routes for managing tools in the tool inventory.
 It provides endpoints for creating, reading, and updating tools.
-
-Routes:
-    - POST /api/tool: Create a new tool.
-    - GET /api/tool/{tool_id}: Get a tool by its ID.
-    - GET /api/tool: Get tools by name.
-    - PATCH /api/tool/{tool_id}: Update an existing tool.
 """
 
 from __future__ import annotations

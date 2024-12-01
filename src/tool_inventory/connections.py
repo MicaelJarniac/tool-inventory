@@ -4,16 +4,6 @@ This module contains the database connection and operations for the tool invento
 application.
 It includes classes for handling database operations and custom exceptions for error
 handling.
-
-Classes:
-    - ObjectNotFoundError: Exception raised when an object is not found.
-    - ToolNotFoundError: Exception raised when a tool is not found.
-    - ObjectExistsError: Exception raised when an object already exists.
-    - ToolExistsError: Exception raised when a tool already exists.
-    - Database: Class for handling database operations.
-
-Functions:
-    - setup_database: Setup the database.
 """
 
 from __future__ import annotations

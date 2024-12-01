@@ -2,11 +2,6 @@
 
 This module initializes the FastAPI application and sets up the routes,
 exception handlers, and static file serving for the tool inventory application.
-
-Routes:
-    - /static: Serve static files.
-    - /api/tool: API routes for managing tools.
-    - /: Web routes for the tool inventory application.
 """
 
 from __future__ import annotations

@@ -3,15 +3,6 @@
 This module contains the web routes for the tool inventory application.
 It provides endpoints for creating, reading, updating, and deleting tools,
 as well as updating tool quantities.
-
-Routes:
-    - GET /: Fetch and display all tools.
-    - GET /create: Render the tool creation form.
-    - POST /create: Create a new tool.
-    - GET /edit/{tool_id}: Render the tool edit form.
-    - POST /edit/{tool_id}: Edit an existing tool.
-    - POST /delete/{tool_id}: Delete a tool.
-    - POST /update_quantity/{tool_id}: Update the quantity of a tool.
 """
 
 from __future__ import annotations

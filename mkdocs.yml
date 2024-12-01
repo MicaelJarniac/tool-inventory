@@ -1,5 +1,7 @@
 site_name: Tool Inventory
 
+repo_url: https://github.com/MicaelJarniac/tool-inventory
+
 theme:
   name: material
 
