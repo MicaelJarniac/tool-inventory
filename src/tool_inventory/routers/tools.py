@@ -8,13 +8,15 @@ from __future__ import annotations
 
 __all__: list[str] = ["router"]
 
+from typing import Annotated
 from uuid import UUID  # noqa: TC003
 
-from fastapi import APIRouter, status
+from fastapi import APIRouter, Depends, status
 from sqlmodel import Session
 
 from tool_inventory.connections import Database, engine
-from tool_inventory.models import Tool, ToolCreate, ToolPatch  # noqa: TC001
+from tool_inventory.models import Tool, ToolCreate, ToolPatch, User  # noqa: TC001
+from tool_inventory.users import current_active_user
 
 router = APIRouter(prefix="/api/tool")
 
@@ -25,11 +27,13 @@ router = APIRouter(prefix="/api/tool")
     summary="Create a tool",
 )
 async def create_tool(
+    user: Annotated[User, Depends(current_active_user)],
     tool: ToolCreate,
 ) -> Tool:
     """Create a new tool.
 
     Args:
+        user: The current user.
         tool: The tool creation model.
 
     Returns:
@@ -37,7 +41,7 @@ async def create_tool(
     """
     with Session(engine) as session:
         db = Database(session)
-        return db.create_tool(tool.to_model())
+        return db.create_tool(user=user, tool=tool.to_model())
 
 
 @router.get(
@@ -45,11 +49,13 @@ async def create_tool(
     summary="Get a tool by ID",
 )
 async def get_tool_by_id(
+    user: Annotated[User, Depends(current_active_user)],
     tool_id: UUID,
 ) -> Tool:
     """Get a tool by its ID.
 
     Args:
+        user: The current user.
         tool_id: The UUID of the tool.
 
     Returns:
@@ -57,7 +63,7 @@ async def get_tool_by_id(
     """
     with Session(engine) as session:
         db = Database(session)
-        return db.get_tool_by_id(tool_id)
+        return db.get_tool_by_id(user=user, tool_id=tool_id)
 
 
 @router.get(
@@ -65,11 +71,13 @@ async def get_tool_by_id(
     summary="Get tools",
 )
 async def get_tools(
+    user: Annotated[User, Depends(current_active_user)],
     name: str | None = None,
 ) -> list[Tool]:
     """Get tools by name.
 
     Args:
+        user: The current user.
         name: The name of the tool to filter by.
 
     Returns:
@@ -77,7 +85,7 @@ async def get_tools(
     """
     with Session(engine) as session:
         db = Database(session)
-        return db.get_tools(name=name)
+        return db.get_tools(user=user, name=name)
 
 
 @router.patch(
@@ -85,12 +93,14 @@ async def get_tools(
     summary="Update a tool",
 )
 async def update_tool(
+    user: Annotated[User, Depends(current_active_user)],
     tool_id: UUID,
     tool_patch: ToolPatch,
 ) -> Tool:
     """Update an existing tool.
 
     Args:
+        user: The current user.
         tool_id: The UUID of the tool to update.
         tool_patch: The tool patch model.
 
@@ -99,6 +109,6 @@ async def update_tool(
     """
     with Session(engine) as session:
         db = Database(session)
-        tool = db.get_tool_by_id(tool_id)
+        tool = db.get_tool_by_id(user=user, tool_id=tool_id)
         tool_patch.patch(tool)
-        return db.update_tool(tool)
+        return db.update_tool(user=user, tool=tool)

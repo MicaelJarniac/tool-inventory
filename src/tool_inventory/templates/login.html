@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Login</h2>
+    <form id="login-form" action="{{ url_for('auth:cookie.login') }}" method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input id="email" name="username" type="email" class="form-control" required>
+            <div class="invalid-feedback">Please provide your email.</div>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password:</label>
+            <input id="password" name="password" type="password" class="form-control" required>
+            <div class="invalid-feedback">Please provide your password.</div>
+        </div>
+        <button class="btn btn-primary" type="submit">Login</button>
+    </form>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: formData,
+            });
+            if (response.ok) {
+                window.location.href = "{{ url_for('web_read_tools') }}";
+            } else {
+                alert('Login failed. Please check your credentials and try again.');
+            }
+        });
+    </script>
+{% endblock %}

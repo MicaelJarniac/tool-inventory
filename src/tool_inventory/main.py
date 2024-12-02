@@ -19,8 +19,14 @@ from loguru import logger
 from pydantic import ValidationError
 
 from tool_inventory import root
-from tool_inventory.connections import ObjectExistsError, ObjectNotFoundError
+from tool_inventory.connections import (
+    ObjectExistsError,
+    ObjectNotFoundError,
+    create_db_and_tables,
+)
+from tool_inventory.models import UserCreate, UserRead
 from tool_inventory.routers import tools, webapp
+from tool_inventory.users import auth_backend, fastapi_users
 
 if TYPE_CHECKING:
     from collections.abc import AsyncGenerator
@@ -38,6 +44,7 @@ async def lifespan(_app: FastAPI) -> AsyncGenerator[None]:
     """
     logger.remove()
     logger.add(sys.stderr, level="DEBUG")
+    create_db_and_tables()
     yield
 
 
@@ -108,3 +115,17 @@ async def validation_error_handler(
 
 app.include_router(tools.router)
 app.include_router(webapp.router)
+
+app.include_router(
+    fastapi_users.get_auth_router(auth_backend),
+    prefix="/auth",
+    tags=["auth"],
+)
+app.include_router(
+    fastapi_users.get_register_router(
+        user_schema=UserRead,
+        user_create_schema=UserCreate,
+    ),
+    prefix="/auth",
+    tags=["auth"],
+)
