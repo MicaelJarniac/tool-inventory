@@ -2,6 +2,17 @@
 
 ![Use Case Diagram](./Use%20Case%20Diagram.drawio.svg)
 
+```mermaid
+flowchart LR
+    A[Home Page] -->|View Tools| B[Tool List]
+    A -->|Edit Tool| C[Edit Tool Page]
+    A -->|Update Quantity| D[Update Quantity]
+    B -->|Add New Tool| E[Add New Tool Page]
+    C -->|Submit Changes| F[Save Changes]
+    E -->|Submit Form| G[Add Tool]
+    B -->|Delete Tool| H[Remove Tool]
+```
+
 ## Using the Webapp
 
 The Tool Inventory webapp allows you to manage your tools efficiently. Here are the main features:
